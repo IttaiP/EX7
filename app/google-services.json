@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1049291130861",
+    "project_id": "sandwich-maker-2f1c4",
+    "storage_bucket": "sandwich-maker-2f1c4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1049291130861:android:1eab709fa7a262c95bc9e4",
+        "android_client_info": {
+          "package_name": "com.example.orders"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1049291130861-vb7cppvplpppligk76p5n3f9khh49cil.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCG-18C6zuGmXh9qNAn3DUxXgvvIID4GgQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1049291130861-vb7cppvplpppligk76p5n3f9khh49cil.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
