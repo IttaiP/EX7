@@ -1,5 +1,6 @@
 package com.example.orders
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
@@ -17,19 +18,27 @@ class EditActivity : AppCompatActivity(){
         super.onCreate(savedInstanceState)
         setContentView(R.layout.edit_order)
         val make_order = findViewById<Button>(R.id.Order_button)
+        val delete_order = findViewById<Button>(R.id.Delete_button)
         val tahini = findViewById<CheckBox>(R.id.tahini)
-        val pickles = findViewById<CheckBox>(R.id.pickels)
+        val pickles = findViewById<EditText>(R.id.pickels)
         val humus = findViewById<CheckBox>(R.id.humus)
         val comments: EditText = findViewById(R.id.comments)
 
         tahini.isChecked = intent.getBooleanExtra("tahini", false)
-        pickles.isChecked = intent.getBooleanExtra("pickles", false)
+        pickles.setText(intent.getStringExtra("pickles"))
         humus.isChecked = intent.getBooleanExtra("humus", false)
         comments.setText(intent.getStringExtra("comments"))
         val id = intent.getStringExtra("id")
 
 
-
+        delete_order.setOnClickListener {
+            if (id != null) {
+                OrderApp.getInstance()?.delete(id)
+            }
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
 
         make_order.setOnClickListener {
             if (id != null) {
@@ -40,7 +49,7 @@ class EditActivity : AppCompatActivity(){
             val order = hashMapOf(
                     "id" to id,
                     "tahini" to tahini.isChecked,
-                    "pickels" to pickles.isChecked,
+                    "pickels" to pickles.text.toString().toInt(),
                     "humus" to humus.isChecked,
                     "comments" to comments.text.toString(),
                     "name" to intent.getStringExtra("name"),
@@ -58,5 +67,7 @@ class EditActivity : AppCompatActivity(){
                         }
             }
         }
+
+
     }
 }

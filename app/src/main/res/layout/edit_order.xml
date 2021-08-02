@@ -29,22 +29,26 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView"/>
 
-    <CheckBox
+    <EditText
         android:id="@+id/pickels"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="pickels"
+        android:hint="Insert Number of Pickles"
+        android:textAlignment="center"
+        android:inputType="number"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/humus"
-        app:layout_constraintVertical_bias="0.203"/>
+        app:layout_constraintVertical_bias="0.203"
+        android:gravity="center_horizontal" />
 
     <CheckBox
         android:id="@+id/humus"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="humus"
+
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -68,10 +72,21 @@
         android:id="@+id/Order_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="ORDER!"
+        android:text="Update!"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.231"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/comments" />
+
+    <Button
+        android:id="@+id/Delete_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Delete!"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/Order_button"
         app:layout_constraintTop_toBottomOf="@+id/comments" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
