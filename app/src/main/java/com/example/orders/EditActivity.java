@@ -47,16 +47,15 @@ public class EditActivity extends AppCompatActivity {
         update_order.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String newId = UUID.randomUUID().toString();
-                db.updateSP(newId);
 
                 Order order = new Order();
                 order.setName(name.getText().toString());
                 order.setComments(comments.getText().toString());
                 order.setHumus(humus.isChecked());
                 order.setTahini(tahini.isChecked());
-                order.setId(newId);
+                order.setId(db.getCurrentId());
                 order.setPickels(pickles.getText().toString());
+                order.setStatus(Order.Status.waiting);
                 db.addNewOrder(order);
 
                 Intent editIntent = new Intent(EditActivity.this, EditActivity.class);
@@ -87,6 +86,4 @@ public class EditActivity extends AppCompatActivity {
         name.setText(order.name);
 
     }
-
-
 }

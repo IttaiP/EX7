@@ -19,7 +19,7 @@ public class Order implements Serializable {
     public String name;
     public String comments;
     public String id;
-    public int pickels;
+    public String pickels;
     public boolean humus;
     public boolean tahini;
     public Status status;
@@ -28,7 +28,7 @@ public class Order implements Serializable {
         String name = "";
         String comments = "";
         String id = UUID.randomUUID().toString();
-        int pickels = 0;
+        String pickels = "0";
         boolean humus = false;
         boolean tahini = false;
         Status status = Status.waiting;
@@ -61,19 +61,19 @@ public class Order implements Serializable {
 
     public void setPickels(String pickelsNum){
         if (pickelsNum.equals("")) {
-            this.pickels = 0;
+            this.pickels = "0";
         }
-        else {this.pickels = Integer.parseInt(pickelsNum);}
+        else {this.pickels = pickelsNum;}
         ;
-        if(pickels<0){
-            this.pickels = 0;
+        if(Integer.parseInt(pickels)<0){
+            this.pickels = "0";
         }
-        if(pickels>10){
-            this.pickels = 10;
+        if(Integer.parseInt(pickels)>10){
+            this.pickels = "10";
         }
     }
 
-    public int getPickels(){
+    public String getPickels(){
         return pickels;
     }
 

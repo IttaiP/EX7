@@ -59,6 +59,7 @@ public class DB {
             public void onSuccess(Void aVoid) {
                 removeSP(order.id);
                 Intent newOrderIntent = new Intent(app, NewOrder.class);
+                newOrderIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 app.startActivity(newOrderIntent);
             }
         });
@@ -69,6 +70,7 @@ public class DB {
                 addOnSuccessListener(documentSnapshot -> {
                     if (documentSnapshot == null || documentSnapshot.toObject(Order.class) == null) {
                         Intent openNewOrderActivity = new Intent(app, NewOrder.class);
+                        openNewOrderActivity.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                         app.startActivity(openNewOrderActivity);
                         return;
                     }
@@ -77,16 +79,19 @@ public class DB {
                         case waiting:
                             Intent openEditOrderActivity = new Intent(app, EditActivity.class);
                             openEditOrderActivity.putExtra("order", order);
+                            openEditOrderActivity.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                             app.startActivity(openEditOrderActivity);
                             break;
                         case progress:
                             Intent openOrderInProgActivity = new Intent(app, Making.class);
                             openOrderInProgActivity.putExtra("order", order);
+                            openOrderInProgActivity.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                             app.startActivity(openOrderInProgActivity);
                             break;
                         case ready:
                             Intent openOrderReadyActivity = new Intent(app, Ready.class);
                             openOrderReadyActivity.putExtra("order", order);
+                            openOrderReadyActivity.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                             app.startActivity(openOrderReadyActivity);
                             break;
                         default:
