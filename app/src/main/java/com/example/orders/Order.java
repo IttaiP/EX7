@@ -27,7 +27,7 @@ public class Order implements Serializable {
     public Order(){
         String name = "";
         String comments = "";
-        String id = UUID.randomUUID().toString();
+        String id = "";
         String pickels = "0";
         boolean humus = false;
         boolean tahini = false;

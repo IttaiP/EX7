@@ -41,7 +41,7 @@ public class DB {
                 .set(order).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void aVoid) {
-                updateSP(order.id);
+//                updateSP(order.id);
             }
 
         }).addOnFailureListener(new OnFailureListener() {
@@ -108,7 +108,7 @@ public class DB {
 
     public void removeSP(String id){
         SharedPreferences.Editor editor = this.sp.edit();
-        editor.remove(id);
+        editor.remove("id");
         editor.apply();
     }
 

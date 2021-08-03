@@ -58,9 +58,10 @@ public class EditActivity extends AppCompatActivity {
                 order.setStatus(Order.Status.waiting);
                 db.addNewOrder(order);
 
-                Intent editIntent = new Intent(EditActivity.this, EditActivity.class);
-                startActivity(editIntent);
-                finish();
+//                Intent editIntent = new Intent(EditActivity.this, EditActivity.class);
+//
+//                startActivity(editIntent);
+//                finish();
             }
 
 
@@ -70,6 +71,7 @@ public class EditActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 db.removeOrder(order);
+                db.removeSP(db.getCurrentId());
                 Intent startIntent = new Intent(EditActivity.this, NewOrder.class);
                 startActivity(startIntent);
                 finish();
