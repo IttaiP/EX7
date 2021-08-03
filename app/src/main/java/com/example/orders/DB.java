@@ -12,6 +12,7 @@ import androidx.lifecycle.MutableLiveData;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.FirebaseApp;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
@@ -38,6 +39,7 @@ public class DB {
         }
         //------ run line to reset shared prefferences -----
 //        this.sp.edit().clear().commit();
+//        FirebaseApp.initializeApp(app);
         this.firestore = FirebaseFirestore.getInstance();
 
         // -------- create listeners---------

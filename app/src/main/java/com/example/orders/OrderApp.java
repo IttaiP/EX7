@@ -2,6 +2,8 @@ package com.example.orders;
 
 import android.app.Application;
 
+import com.google.firebase.FirebaseApp;
+
 
 public class OrderApp extends Application {
     private static OrderApp instance;
@@ -11,8 +13,8 @@ public class OrderApp extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+        FirebaseApp.initializeApp(this);
         instance = this;
-        // create database communicator
         db = new DB();
 
     }
