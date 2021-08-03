@@ -11,6 +11,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Orders">
         <activity android:name=".EditActivity"/>
+        <activity android:name=".NewOrder"/>
+        <activity android:name=".Ready"/>
+        <activity android:name=".Making"/>
+
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

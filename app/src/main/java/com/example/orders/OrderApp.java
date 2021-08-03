@@ -14,7 +14,6 @@ public class OrderApp extends Application {
     public void onCreate() {
         super.onCreate();
         instance = this;
-        final FirebaseFirestore firestore = FirebaseFirestore.getInstance();
         // create database communicator
         db = new DB();
 

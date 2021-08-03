@@ -17,6 +17,7 @@ public class Order implements Serializable {
 
 
     String name;
+    String comments;
     String id;
     int pickels;
     boolean humus;
@@ -25,6 +26,7 @@ public class Order implements Serializable {
 
     public Order(){
         String name = "";
+        String comments = "";
         String id = UUID.randomUUID().toString();
         int pickels = 0;
         boolean humus = false;
@@ -36,12 +38,17 @@ public class Order implements Serializable {
         this.name = name;
     }
 
+    void setComments(String comment){
+        this.comments = comment;
+    }
+
+
     void setId(String id){
         this.id = id;
     }
 
-    void setPickels(int pickelsNum){
-        this.pickels = pickelsNum;
+    void setPickels(String pickelsNum){
+        this.pickels = Integer.parseInt(pickelsNum);
         if(pickels<0){
             this.pickels = 0;
         }
