@@ -50,9 +50,11 @@ public class NewOrder extends AppCompatActivity {
                 order.setTahini(tahini.isChecked());
                 order.setId(newId);
                 order.setPickels(pickles.getText().toString());
+                order.setStatus(Order.Status.waiting);
                 db.addNewOrder(order);
 
                 Intent editIntent = new Intent(NewOrder.this, EditActivity.class);
+                editIntent.putExtra("order", order);
                 startActivity(editIntent);
                 finish();
             }

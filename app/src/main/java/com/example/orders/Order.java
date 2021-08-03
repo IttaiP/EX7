@@ -16,13 +16,13 @@ public class Order implements Serializable {
 
 
 
-    String name;
-    String comments;
-    String id;
-    int pickels;
-    boolean humus;
-    boolean tahini;
-    Status status;
+    public String name;
+    public String comments;
+    public String id;
+    public int pickels;
+    public boolean humus;
+    public boolean tahini;
+    public Status status;
 
     public Order(){
         String name = "";
@@ -34,20 +34,32 @@ public class Order implements Serializable {
         Status status = Status.waiting;
     }
 
-    void setName(String name){
+    public void setName(String name){
         this.name = name;
     }
 
-    void setComments(String comment){
+    public String getName(){
+        return name;
+    }
+
+    public void setComments(String comment){
         this.comments = comment;
     }
 
+    public String getComments(){
+        return comments;
+    }
 
-    void setId(String id){
+
+    public void setId(String id){
         this.id = id;
     }
 
-    void setPickels(String pickelsNum){
+    public String getId(){
+        return id;
+    }
+
+    public void setPickels(String pickelsNum){
         if (pickelsNum.equals("")) {
             this.pickels = 0;
         }
@@ -61,15 +73,32 @@ public class Order implements Serializable {
         }
     }
 
-    void setHumus(boolean val){
+    public int getPickels(){
+        return pickels;
+    }
+
+    public void setHumus(boolean val){
         this.humus = val;
+    }
+
+    public boolean getHumus(){
+        return humus;
     }
 
     public void setTahini(boolean tahini) {
         this.tahini = tahini;
     }
 
+    public boolean getTahini(){
+        return tahini;
+    }
+
     public void setStatus(Status status) {
         this.status = status;
     }
+
+    public Status getStatus(){
+        return status;
+    }
+
 }

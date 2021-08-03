@@ -29,7 +29,7 @@ public class DB {
             this.currentId = this.sp.getString("id", "");
         }
         //------ run line to reset shared prefferences -----
-        this.sp.edit().clear().commit();
+//        this.sp.edit().clear().commit();
         this.firestore = FirebaseFirestore.getInstance();
 
         // -------- create listeners---------
@@ -59,8 +59,40 @@ public class DB {
             public void onSuccess(Void aVoid) {
                 removeSP(order.id);
                 Intent newOrderIntent = new Intent(app, NewOrder.class);
+                app.startActivity(newOrderIntent);
             }
         });
+    }
+
+    public void OpenIntentByStatus(String id){
+        this.firestore.collection("Orders").document(id).get().
+                addOnSuccessListener(documentSnapshot -> {
+                    if (documentSnapshot == null || documentSnapshot.toObject(Order.class) == null) {
+                        Intent openNewOrderActivity = new Intent(app, NewOrder.class);
+                        app.startActivity(openNewOrderActivity);
+                        return;
+                    }
+                    Order order = documentSnapshot.toObject(Order.class);
+                    switch (order.getStatus()) {
+                        case waiting:
+                            Intent openEditOrderActivity = new Intent(app, EditActivity.class);
+                            openEditOrderActivity.putExtra("order", order);
+                            app.startActivity(openEditOrderActivity);
+                            break;
+                        case progress:
+                            Intent openOrderInProgActivity = new Intent(app, Making.class);
+                            openOrderInProgActivity.putExtra("order", order);
+                            app.startActivity(openOrderInProgActivity);
+                            break;
+                        case ready:
+                            Intent openOrderReadyActivity = new Intent(app, Ready.class);
+                            openOrderReadyActivity.putExtra("order", order);
+                            app.startActivity(openOrderReadyActivity);
+                            break;
+                        default:
+                            Log.d("ERROR", "STATUS is:" + order.getStatus());
+                    }
+                });
     }
 
     public void updateSP(String id){
