@@ -3,9 +3,12 @@ package com.example.orders;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.util.Log;
 
+import androidx.annotation.NonNull;
 import androidx.lifecycle.MutableLiveData;
 
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.ktx.Firebase;
@@ -26,7 +29,7 @@ public class DB {
             this.currentId = this.sp.getString("id", "");
         }
         //------ run line to reset shared prefferences -----
-//        this.sp.edit().clear().commit();
+        this.sp.edit().clear().commit();
         this.firestore = FirebaseFirestore.getInstance();
 
         // -------- create listeners---------
@@ -39,6 +42,12 @@ public class DB {
             @Override
             public void onSuccess(Void aVoid) {
                 updateSP(order.id);
+            }
+
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Log.e("FAIL!!!","set failed", e);
             }
         });
     }

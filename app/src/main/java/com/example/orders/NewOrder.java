@@ -10,6 +10,8 @@ import android.widget.EditText;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.util.UUID;
+
 public class NewOrder extends AppCompatActivity {
 
     // add buttons and text views stuff
@@ -38,13 +40,16 @@ public class NewOrder extends AppCompatActivity {
         make_order.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                String newId = UUID.randomUUID().toString();
+                db.updateSP(newId);
+
                 Order order = new Order();
-                order.setName(name.toString());
-                order.setComments(comments.toString());
+                order.setName(name.getText().toString());
+                order.setComments(comments.getText().toString());
                 order.setHumus(humus.isChecked());
                 order.setTahini(tahini.isChecked());
-                order.setId(db.getCurrentId());
-                order.setPickels(pickles.toString());
+                order.setId(newId);
+                order.setPickels(pickles.getText().toString());
                 db.addNewOrder(order);
 
                 Intent editIntent = new Intent(NewOrder.this, EditActivity.class);

@@ -48,7 +48,11 @@ public class Order implements Serializable {
     }
 
     void setPickels(String pickelsNum){
-        this.pickels = Integer.parseInt(pickelsNum);
+        if (pickelsNum.equals("")) {
+            this.pickels = 0;
+        }
+        else {this.pickels = Integer.parseInt(pickelsNum);}
+        ;
         if(pickels<0){
             this.pickels = 0;
         }
