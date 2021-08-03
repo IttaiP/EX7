@@ -25,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
             this.startActivity(newOrderIntent);
         } else{
             // get status and open page accordingly
-            db.OpenIntentByStatus(id);
+            db.OpenIntentByStatus(id, this);
             finish();
 
         }

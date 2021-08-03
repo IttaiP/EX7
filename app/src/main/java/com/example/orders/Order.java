@@ -9,7 +9,7 @@ public class Order implements Serializable {
 
     public enum Status {
         waiting,
-        progress,
+        in_progress,
         ready,
         done
     }

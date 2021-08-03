@@ -42,7 +42,7 @@ public class NewOrder extends AppCompatActivity {
             public void onClick(View v) {
                 String newId = UUID.randomUUID().toString();
                 db.updateSP(newId);
-
+                db.setCurrentId(newId);
                 Order order = new Order();
                 order.setName(name.getText().toString());
                 order.setComments(comments.getText().toString());

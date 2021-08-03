@@ -10,6 +10,8 @@ import android.widget.EditText;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.firebase.firestore.DocumentReference;
+
 import java.util.UUID;
 
 public class EditActivity extends AppCompatActivity {
@@ -23,13 +25,15 @@ public class EditActivity extends AppCompatActivity {
     EditText comments;
     EditText name;
 
+    DB db;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.edit_order);
 
 
-        DB db = OrderApp.getInstance().getDB();
+        db = OrderApp.getInstance().getDB();
 
         Order order = (Order) getIntent().getSerializableExtra("order");
 
@@ -55,6 +59,7 @@ public class EditActivity extends AppCompatActivity {
                 order.setTahini(tahini.isChecked());
                 order.setId(db.getCurrentId());
                 order.setPickels(pickles.getText().toString());
+                pickles.setText(order.pickels);
                 order.setStatus(Order.Status.waiting);
                 db.addNewOrder(order);
 
@@ -66,18 +71,25 @@ public class EditActivity extends AppCompatActivity {
 
 
         });
+        db.listenForStatusChange(this);
 
         cancel_order.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 db.removeOrder(order);
-                db.removeSP(db.getCurrentId());
+//                db.removeSP(db.getCurrentId());
                 Intent startIntent = new Intent(EditActivity.this, NewOrder.class);
                 startActivity(startIntent);
                 finish();
             }
         });
 
+    }
+
+    @Override
+    protected void onDestroy() {
+        db.destroyListener();
+        super.onDestroy();
     }
 
     private void updateUI(Order order){
@@ -88,4 +100,6 @@ public class EditActivity extends AppCompatActivity {
         name.setText(order.name);
 
     }
+
+
 }
